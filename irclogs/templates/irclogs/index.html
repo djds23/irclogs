@@ -21,16 +21,17 @@
                     <th>Timestamp</th>
                     <th>Nick</th>
                     <th>Message</th>
-            </thead>
+                </thead>
             <tr ng-repeat="message in messages">
                 <td>{{ message.created | date:'yyyy-MM-dd HH:mm:ss' }}</td>
                 <td>{{ message.nick }}</td>
                 <td>{{ message.body }}</td>
+                <td>{{ message.page }}</td>
             </tr>
         </table>
     </div>
+    <button ng-repeat="page in pages">Next Page</button>
 {% endraw %}
-
 </script>
 {% endblock %}
 
