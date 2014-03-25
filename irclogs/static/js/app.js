@@ -26,18 +26,9 @@ app.controller('MessageListCtrl', ['$scope', '$http', '$location', function($sco
                 }]},
             },
         }).success(function(data) {
-            $scope.range = function(start, end) { 
-                    var ret = [];
-                    if (!end) {
-                        end = start;
-                        start = 0;
-                        }
-                    for (var i = start; i < end; i++){
-                    ret.push(i);
-                        }
-                    return ret    
-                };
             $scope.messages = data.objects;
         });
     };
 }]);
+
+
