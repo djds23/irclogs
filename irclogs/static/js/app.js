@@ -12,18 +12,14 @@ app.config(['$routeProvider', function($routeProvider) {
 app.controller('MessageListCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
     $scope.searchQuery = $location.search().q || '';
     $scope.page_num = 1;
-    $scope.next_page = function() {
-        if ($scope.page_num == $scope.total_pages)
-            return undefined;
-        else {
+    $scope.older = function() {
+        if ($scope.page_num != $scope.total_pages) {
             $scope.page_num++;
             $scope.fetch();
         }
     };
-    $scope.last_page = function() {
-        if ($scope.page_num == 1)
-            return undefined;
-        else {
+    $scope.newer = function() {
+        if ($scope.page_num != 1) {
             $scope.page_num--;
             $scope.fetch();
         }
