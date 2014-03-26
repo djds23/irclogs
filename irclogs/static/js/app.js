@@ -13,13 +13,13 @@ app.controller('MessageListCtrl', ['$scope', '$http', '$location', function($sco
     $scope.searchQuery = $location.search().q || '';
     $scope.page_num = 1;
     $scope.older = function() {
-        if ($scope.page_num != $scope.total_pages) {
+        if ($scope.page_num !== $scope.total_pages) {
             $scope.page_num++;
             $scope.fetch();
         }
     };
     $scope.newer = function() {
-        if ($scope.page_num != 1) {
+        if ($scope.page_num !== 1) {
             $scope.page_num--;
             $scope.fetch();
         }
