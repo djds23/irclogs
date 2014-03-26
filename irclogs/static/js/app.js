@@ -36,12 +36,18 @@ app.controller('MessageListCtrl', ['$scope', '$http', '$location', function($sco
             method: 'GET',
             url: '/api/v1/message',
             params: {
-                q: {filters:[{
-                    name: 'body',
-                    op: 'like',
-                    val: '%' + $scope.searchQuery + '%',
-                }]},
-            page: $scope.page_num,
+                q: {
+                    filters:[{
+                        name: 'body',
+                        op: 'like',
+                        val: '%' + $scope.searchQuery + '%',
+                    }],
+                    order_by:[{
+                        field: 'created',
+                        direction: 'desc',
+                    }],
+                },
+                page: $scope.page_num,
             },
         }).success(function(data) {
             $scope.messages = data.objects;
