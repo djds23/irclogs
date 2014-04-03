@@ -12,17 +12,10 @@ app.config(['$routeProvider', function($routeProvider) {
 app.controller('MessageListCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
     $scope.searchQuery = $location.search().q || '';
     $scope.page_num = 1;
+    $scope.limit = 5;
     $scope.older = function() {
-        if ($scope.page_num !== $scope.total_pages) {
-            $scope.page_num++;
+            $scope.limit+=25;
             $scope.fetch();
-        }
-    };
-    $scope.newer = function() {
-        if ($scope.page_num !== 1) {
-            $scope.page_num--;
-            $scope.fetch();
-        }
     };
     $scope.fetch = function() {
         if($scope.searchQuery.trim().length) {
@@ -43,11 +36,12 @@ app.controller('MessageListCtrl', ['$scope', '$http', '$location', function($sco
                         direction: 'desc',
                     }],
                 },
-                page: $scope.page_num,
+                limit:$scope.limit, 
             },
         }).success(function(data) {
             $scope.messages = data.objects;
             $scope.total_pages = data.total_pages;
+            console.log($scope.limit);
         });
     };
 }]);
